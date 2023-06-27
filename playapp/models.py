@@ -1,5 +1,3 @@
-from itertools import chain
-
 from django.db import models
 
 
@@ -70,7 +68,6 @@ class Plan(models.Model):
 
             base_plan = base_plan.base_plan
         return list(q)
-
 
     def __str__(self):
         return f"{self.name}:{self.version}"
