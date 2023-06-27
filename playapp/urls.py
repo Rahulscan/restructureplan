@@ -1,7 +1,7 @@
 from django.urls import path
 
-from .views import QuotaValueAPIView
+from .views import QuotaPlanAPIView
 
 urlpatterns = [
-    path('plans/quotas/<int:pk>/', QuotaValueAPIView.as_view(), name='quota-value-api')
+    path('plans/quotas/<pk>/', QuotaPlanAPIView.as_view(), name='quota-value-api')
 ]

@@ -1,4 +1,5 @@
 from rest_framework import serializers
+
 from playapp.models import Quota, Plan, PlanQuota
 
 
@@ -16,7 +17,7 @@ class PlanSerializer(serializers.ModelSerializer):
         fields = ['name', 'version', 'quotas', 'base_plan']
 
     def get_quotas(self, plan):
-        return plan.get_quotas
+        return QuotaValueSerializer(plan.all_quotas, many=True).data
 
 
 class QuotaValueSerializer(serializers.ModelSerializer):
