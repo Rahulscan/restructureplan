@@ -11,16 +11,26 @@ class QuotaPlanAPIView(generics.RetrieveAPIView):
     queryset = Plan.objects.all()
 
 
+# class QuotaValueAPIView(generics.RetrieveAPIView):
+#     def get(self, request, pk):
+#         try:
+#             plan = Plan.objects.get(pk=pk)
+#             quotas = plan.all_quotas
+#             serializer = QuotaValueSerializer(quotas, many=True)
+#             return Response(serializer.data)
+#         except Plan.DoesNotExist:
+#             return Response({"error": "Plan not found."}, status=404)
+
 class QuotaValueAPIView(generics.RetrieveAPIView):
-    def get(self, request, pk):
+    def get(self, request, **kwargs):
         try:
+            pk = kwargs.get('pk')
             plan = Plan.objects.get(pk=pk)
             quotas = plan.all_quotas
             serializer = QuotaValueSerializer(quotas, many=True)
             return Response(serializer.data)
         except Plan.DoesNotExist:
             return Response({"error": "Plan not found."}, status=404)
-
 
 
 
